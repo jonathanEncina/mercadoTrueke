@@ -1,0 +1,1 @@
+<?php $this->render('_form2',array('model2'=>$model2)); ?>

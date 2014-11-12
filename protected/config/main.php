@@ -21,6 +21,8 @@ return array(
 		'application.components.*',
 	),
 	
+	
+	
 	'theme'=>'bootstrap', 
 
 	'modules'=>array(
@@ -93,7 +95,7 @@ return array(
 	// application-level parameters that can be accessed
 	// using Yii::app()->params['paramName']
 	'params'=>array(
-		// this is used in contact page
+		'categoria_form'=>array(),
 		'adminEmail'=>'webmaster@example.com',
 	),
 );
