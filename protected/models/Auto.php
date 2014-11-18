@@ -41,7 +41,7 @@ class Auto extends CActiveRecord
 		// will receive user inputs.
 		return array(
 			//array('ano','marca_auto_id, modelo_auto_id, version_auto_id, combustible_id, tipo_vehiculo_id', 'required'),
-			array('ano', 'required'),
+			array('ano ,marca_auto_id, modelo_auto_id,', 'required'),
 			array('marca_auto_id, modelo_auto_id, version_auto_id, combustible_id, tipo_vehiculo_id', 'numerical', 'integerOnly'=>true),
 			array('ano, transmision, kilometros', 'length', 'max'=>45),
 			// The following rule is used by search().

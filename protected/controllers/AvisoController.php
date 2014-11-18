@@ -32,7 +32,7 @@ class AvisoController extends Controller
 				'users'=>array('*'),
 			),
 			array('allow', // allow authenticated user to perform 'create' and 'update' actions
-				'actions'=>array('create','update'),
+				'actions'=>array('create','update','addModeloAutoSelect'),
 				'users'=>array('@'),
 			),
 			array('allow', // allow admin user to perform 'admin' and 'delete' actions
@@ -65,6 +65,8 @@ class AvisoController extends Controller
 	
 	    $tipo = Yii::app()->request->getParam('tipo');
 		$model=new Aviso;
+		$imagen = new Imagen();
+		
         if(isset($tipo)){
 		$model->tipo_aviso_id = $tipo;
 		}
@@ -93,8 +95,11 @@ class AvisoController extends Controller
              $valid=$model2->validate() && $valid;
 			
 			if($valid){
-			   if($model->save()){
-				$this->redirect(array('view','id'=>$model->idaviso));
+			   if($model2->save()){
+			       $model->auto_id = $model2->idauto;
+			     if($model->save()){  
+				   $this->redirect(array('view','id'=>$model->idaviso));
+			     }
 			   }
 			}
 			
@@ -170,15 +175,29 @@ class AvisoController extends Controller
 		}else{
 		    $url2 = false;
 		}
-		
-		
+				
 		header("Content-type: application/json");
         echo CJSON::encode(array(
             'status'=>'success',
             'div'=>$url2
         ));
         exit;
-        
+    }
+	
+	public function actionAddModeloAutoSelect()
+    {
+        $id    = Yii::app()->getRequest()->getParam('id', null);
+			
+		$model = ModeloAuto::model()->findAllByAttributes(array('marca_auto_id'=>$id));	
+
+		$url2 = $this->renderPartial('application.views.auto._selectModeloAuto', array('model'=>$model),true);
+
+		header("Content-type: application/json");
+        echo CJSON::encode(array(
+            'status'=>'success',
+            'div'=>$url2
+        ));
+        exit;
     }
 
 	/**

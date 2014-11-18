@@ -3,8 +3,8 @@
 /* @var $model Aviso */
 
 $this->breadcrumbs=array(
-	'Avisos'=>array('index'),
-	'Create',
+	'Mi Cuenta'=>array('usuario/index'),
+	'Crear Aviso',
 );
 /*
 $this->menu=array(

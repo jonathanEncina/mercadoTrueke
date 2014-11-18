@@ -8,7 +8,7 @@
 					'class' => 'col-sm-5',
 				),
 				'widgetOptions' => array(
-					'data' =>  array(2016=>2016 , 2015=>2015, 2014=>2014),
+					'data' => CHtml::listData(MarcaAuto::model()->findAll(),'idmarca_auto', 'nombre'),
 					'htmlOptions' => array('prompt'=>'.:: Seleccione Marca ::.'),
 				)
 			)
@@ -20,9 +20,10 @@
 			array(
 				'wrapperHtmlOptions' => array(
 					'class' => 'col-sm-5',
-				),
+					
+			    ),
 				'widgetOptions' => array(
-					'data' =>  array(2016=>2016 , 2015=>2015, 2014=>2014),
+					'data' => CHtml::listData(ModeloAuto::model()->findAllByAttributes(array('marca_auto_id'=>$model2->marca_auto_id)),'idmodelo_auto', 'nombre'),
 					'htmlOptions' => array('prompt'=>'.:: Seleccione Modelo ::.'),
 				)
 			)
@@ -105,3 +106,38 @@
 		); 
 		
 	?>
+	
+	<script>
+	
+	$(document).ready(function(){
+	     if($('#Auto_marca_auto_id').val() == ''){
+		        $('#Auto_modelo_auto_id').val("");
+				$('#Auto_modelo_auto_id').attr("disabled", true);		
+		}
+	});
+	
+	
+	/* ajax para llenar dropdownlist con los modelos de autos*/
+	$('#Auto_marca_auto_id').change(function(){
+	
+	    if($(this).val() == ''){
+		        $('#Auto_modelo_auto_id').val("");
+				$('#Auto_modelo_auto_id').attr("disabled", true);
+				
+		}else{
+			$.ajax({
+				url  : "<?php echo Yii::app()->createURL('aviso/addModeloAutoSelect');?>",
+				type : 'post',
+				cache: false ,
+				data : {id: $(this).val() },
+				success: function(data){
+						$('#Auto_modelo_auto_id').html(data.div);
+						$('#Auto_modelo_auto_id').removeAttr("disabled");
+					}
+			});
+		}
+    return false;
+    });
+	
+	
+	</script>
