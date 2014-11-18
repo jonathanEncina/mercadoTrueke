@@ -57,7 +57,7 @@ class ImagenAviso extends CActiveRecord
 	{
 		return array(
 			'idimagen' => 'Idimagen',
-			'nombre' => 'Nombre',
+			'nombre' => 'Imagen',
 			'aviso_id' => 'Aviso',
 		);
 	}

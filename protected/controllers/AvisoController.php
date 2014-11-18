@@ -63,9 +63,11 @@ class AvisoController extends Controller
 	public function actionCreate()
 	{
 	
+	$this->layout='//layouts/column1';
+	
 	    $tipo = Yii::app()->request->getParam('tipo');
 		$model=new Aviso;
-		$imagen = new Imagen();
+		$imagen = new ImagenAviso();
 		
         if(isset($tipo)){
 		$model->tipo_aviso_id = $tipo;
@@ -77,12 +79,12 @@ class AvisoController extends Controller
 		// $this->performAjaxValidation($model);
 
 		if(isset($_POST['Aviso']))
-		{
-			$model->attributes=$_POST['Aviso'];
+		{		
+			$model->attributes = $_POST['Aviso'];
 			$model->usuario_id = Yii::app()->user->id;
-			$model->created = date("Y-m-d H:i:s");
-			$model->updated = date("Y-m-d H:i:s");
-			
+			$model->created    = date("Y-m-d H:i:s");
+			$model->updated    = date("Y-m-d H:i:s");
+			$model->estado     = 'inactivo';
 			
 			if($model->categoria_id == 7){
 			  if(isset($_POST['Auto'])){
@@ -91,8 +93,8 @@ class AvisoController extends Controller
 			  }
 			}
 			
-			 $valid=$model->validate();
-             $valid=$model2->validate() && $valid;
+			$valid=$model->validate();
+            $valid=$model2->validate() && $valid;
 			
 			if($valid){
 			   if($model2->save()){
@@ -102,11 +104,10 @@ class AvisoController extends Controller
 			     }
 			   }
 			}
-			
 		}
 
 		$this->render('create',array(
-			'model'=>$model,'model2'=>$model2,
+			'model'=>$model,'model2'=>$model2,'imagen'=>$imagen
 		));
 	}
 
@@ -183,6 +184,7 @@ class AvisoController extends Controller
         ));
         exit;
     }
+	
 	
 	public function actionAddModeloAutoSelect()
     {

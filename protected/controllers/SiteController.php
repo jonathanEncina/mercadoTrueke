@@ -29,7 +29,23 @@ class SiteController extends Controller
 	{
 		// renders the view file 'protected/views/site/index.php'
 		// using the default layout 'protected/views/layouts/main.php'
-		$this->render('index');
+		
+		$dataProvider=new CActiveDataProvider('Aviso', array(
+    'criteria'=>array(
+       // 'condition'=>'status=1',
+       // 'order'=>'create_time DESC',
+      //  'with'=>array('author'),
+    ),
+    'countCriteria'=>array(
+       // 'condition'=>'status=1',
+        // 'order' and 'with' clauses have no meaning for the count query
+    ),
+    'pagination'=>array(
+        'pageSize'=>9,
+    ),
+));
+		
+		$this->render('index',array('dataProvider'=>$dataProvider));
 	}
 
 	/**

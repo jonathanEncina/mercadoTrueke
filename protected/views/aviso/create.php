@@ -15,4 +15,4 @@ $this->menu=array(
 
 <h1>Create Aviso</h1>
 
-<?php $this->renderPartial('_form', array('model'=>$model,'model2'=>$model2)); ?>
+<?php $this->renderPartial('_form', array('model'=>$model,'model2'=>$model2,'imagen'=>$imagen)); ?>
