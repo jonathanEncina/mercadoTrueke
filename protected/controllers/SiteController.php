@@ -44,8 +44,23 @@ class SiteController extends Controller
         'pageSize'=>9,
     ),
 ));
+
+$dataProviderTrueke = new CActiveDataProvider('Aviso', array(
+    'criteria'=>array(
+       // 'condition'=>'status=1',
+       // 'order'=>'create_time DESC',
+      //  'with'=>array('author'),
+    ),
+    'countCriteria'=>array(
+       // 'condition'=>'status=1',
+        // 'order' and 'with' clauses have no meaning for the count query
+    ),
+    'pagination'=>array(
+        'pageSize'=>9,
+    ),
+));
 		
-		$this->render('index',array('dataProvider'=>$dataProvider));
+		$this->render('index',array('dataProviderVenta'=>$dataProvider,'dataProviderTrueke'=>$dataProviderTrueke));
 	}
 
 	/**

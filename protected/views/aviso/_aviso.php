@@ -4,7 +4,7 @@
         <div class="caption">
             <h3>$<?php echo $data->precio?></h3>
             <p><?php echo $data->nombre?></p>
-            <p><a href="#" class="btn btn-primary" role="button">Button</a> <a href="#" class="btn btn-default" role="button">Button</a></p>
+            <!--<p><a href="#" class="btn btn-primary" role="button">Ver</a> </p> -->
         </div>
     </div>
 </div>

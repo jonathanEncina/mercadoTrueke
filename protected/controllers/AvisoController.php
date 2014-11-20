@@ -74,7 +74,7 @@ class AvisoController extends Controller
 		}
 		
 		$model2 = null;
-		   $model2 = new Auto();
+		   //$model2 = new Auto();
 		// Uncomment the following line if AJAX validation is needed
 		// $this->performAjaxValidation($model);
 
@@ -94,15 +94,24 @@ class AvisoController extends Controller
 			}
 			
 			$valid=$model->validate();
-            $valid=$model2->validate() && $valid;
+			
+			if(isset($model2)){
+			 $valid=$model2->validate() && $valid;
+			}
+           
 			
 			if($valid){
-			   if($model2->save()){
-			       $model->auto_id = $model2->idauto;
-			     if($model->save()){  
+			    if(isset($model2)){
+			       if($model2->save()){
+				       if($model->categoria_id == 7){
+			              $model->auto_id = $model2->idauto;
+			           }
+				    }
+			    }
+				
+				if($model->save()){  
 				   $this->redirect(array('view','id'=>$model->idaviso));
-			     }
-			   }
+			    }	   
 			}
 		}
 

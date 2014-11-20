@@ -31,22 +31,58 @@ $this->pageTitle=Yii::app()->name;
         ),
     )
 ); 
+?>
+
+<div class="col-sm-3 col-xs-12 bs-docs-sidebar" >
+        <div style="border-right:1px solid #ddd;">
+		<h1>Venta Productos</h1>
+		<p>Productos para trueke destacados de la semana</p>
+		</div>
+    </div>
 
 
-
-echo CHtml::openTag('div', array('class' => 'row-fluid'));
+<div class="col-sm-9 col-xs-12 ">
+<?php echo CHtml::openTag('div', array('class' => 'row-fluid'));
 $this->widget(
     'booster.widgets.TbThumbnails',
     array(
-        'dataProvider' => $dataProvider,
+        'dataProvider' => $dataProviderVenta,
         'template' => "{items}\n{pager}",
         'itemView' => 'application.views.aviso._aviso',
+		'htmlOptions'=>array('class'=>'avisoIndex list-view')
     )
 );
-echo CHtml::closeTag('div');
+echo CHtml::closeTag('div'); ?>
+</div>
+
+<div class="col-sm-3 col-xs-12 bs-docs-sidebar" >
+    <div style="border-right:1px solid #ddd;">
+		<h1>Trueke Productos</h1>
+		<p>Productos para venta destacados de la semana</p>
+    </div>
+</div>
 
 
-?>
+<div class="col-sm-9 col-xs-12 ">
+<?php echo CHtml::openTag('div', array('class' => 'row-fluid'));
+$this->widget(
+    'booster.widgets.TbThumbnails',
+    array(
+        'dataProvider' => $dataProviderTrueke,
+        'template' => "{items}\n{pager}",
+        'itemView' => 'application.views.aviso._aviso',
+		'htmlOptions'=>array('class'=>'avisoIndex list-view')
+    )
+);
+echo CHtml::closeTag('div'); ?>
+</div>
+
+<style>
+.avisoIndex .col-md-4{
+width:25%;
+}
+</style>
+
 
 
 
