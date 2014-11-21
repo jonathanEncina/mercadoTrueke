@@ -1,6 +1,6 @@
-<div class="col-sm-6 col-md-4">
+<div class="col-sm-6 col-md-3">
     <div class="thumbnail">
-        <img src="<?php echo Yii::app()->request->baseUrl.'/images/prueba.gif';?>" alt="">
+        <?php echo CHtml::link('<img src="'.Yii::app()->request->baseUrl.'/images/prueba.gif" />',array('aviso/view','id'=>$data->idaviso)); ?>
         <div class="caption">
             <h3>$<?php echo $data->precio?></h3>
             <p><?php echo $data->nombre?></p>

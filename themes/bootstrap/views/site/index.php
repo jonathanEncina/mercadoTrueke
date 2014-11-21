@@ -77,11 +77,6 @@ $this->widget(
 echo CHtml::closeTag('div'); ?>
 </div>
 
-<style>
-.avisoIndex .col-md-4{
-width:25%;
-}
-</style>
 
 
 
